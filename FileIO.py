@@ -1,5 +1,6 @@
 from curses.ascii import isspace
 import json
+from lib2to3.pgen2.token import PERCENT
 
 
 def readFoodsFile():
@@ -78,6 +79,8 @@ final.close()
 with open('foodData.json') as f:
     data = json.load(f)
 
+f.close()
+
 countHighFiber = 0
 countLowFat = 0
 countLowGlycemic = 0
@@ -94,8 +97,12 @@ print(countHighFiber)
 print(countLowFat)
 print(countLowGlycemic)
 
-print(round(countHighFiber/len(data)*100.0,2), "%")
-print(round(countLowFat/len(data)*100.0,2), "%")
-print(round(countLowGlycemic/len(data)*100.0,2), "%")
+print(round(countHighFiber/len(data)*100.0,2), "percent")
+print(round(countLowFat/len(data)*100.0,2), "percent")
+print(round(countLowGlycemic/len(data)*100.0,2), "percent")
 
-f.close()
+print("\nReccomended Foods\n==================")
+
+for i in range(0,len(data)):
+    if data[i]['High Fiber'] == 'Yes' and data[i]['Low Fat'] == 'Yes' and data[i]['Low Glycemic'] == 'Yes':
+        print(f"{data[i]['Food']} is a reccomended food.")
