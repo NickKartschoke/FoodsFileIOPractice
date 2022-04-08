@@ -94,4 +94,8 @@ print(countHighFiber)
 print(countLowFat)
 print(countLowGlycemic)
 
+print(round(countHighFiber/len(data)*100.0,2), "%")
+print(round(countLowFat/len(data)*100.0,2), "%")
+print(round(countLowGlycemic/len(data)*100.0,2), "%")
+
 f.close()
